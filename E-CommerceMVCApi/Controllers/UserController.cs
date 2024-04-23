@@ -23,22 +23,21 @@ namespace E_CommerceMVCApi.Controllers
         }
 
         [HttpPost("AddUser")]
-        public IActionResult AddUser(User user)
-        {            
-          if (ModelState.IsValid)
+        public IActionResult AddUser([FromBody] User user) // Bind user data from the request body
+        {
+            if (ModelState.IsValid)
             {
                 userService.AddUser(user);
                 return Ok();
             }
             else
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
-
         }
 
         [HttpPut("UpdateUser")]
-        public IActionResult UpdateUser(User user)
+        public IActionResult UpdateUser([FromBody] User user) // Bind user data from the request body
         {
             if (ModelState.IsValid)
             {
@@ -47,7 +46,7 @@ namespace E_CommerceMVCApi.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
         }
 

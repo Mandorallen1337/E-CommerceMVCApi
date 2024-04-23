@@ -5,24 +5,37 @@ namespace E_CommerceMVCApi.Services
 {
     public class ProductService
     {
-        internal void AddProduct(Product product)
+        DatabaseContext db;
+        public ProductService(DatabaseContext databaseContext)
         {
-            throw new NotImplementedException();
+            db = databaseContext;            
         }
 
-        internal void DeleteProduct(int id)
+        public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            db.Products.Add(product);
+            db.SaveChanges(); 
         }
 
-        internal object? GetAllProducts()
+        public void DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            if (id != 0)
+            {
+                Product product = db.Products.Find(id);
+                db.Products.Remove(product);
+                db.SaveChanges();
+            }
         }
 
-        internal void UpdateProduct(Product product)
+        public List<Product> GetAllProducts()
         {
-            throw new NotImplementedException();
+            return new List<Product>();
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            db.Products.Update(product);
+            db.SaveChanges(); 
         }
     }
 }

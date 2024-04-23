@@ -5,24 +5,36 @@ namespace E_CommerceMVCApi.Services
 {
     public class OrderService
     {
-        internal void AddOrder(Order order)
+        DatabaseContext db;
+        public OrderService(DatabaseContext databaseContext)
         {
-            throw new NotImplementedException();
+            db = databaseContext;            
+        }
+        public void AddOrder(Order order)
+        {
+           db.Orders.Add(order);
+            db.SaveChanges();
         }
 
-        internal void DeleteOrder(int id)
+        public void DeleteOrder(int id)
         {
-            throw new NotImplementedException();
+            if (id != 0)
+            {
+                Order order = db.Orders.Find(id);
+                db.Orders.Remove(order);
+                db.SaveChanges();
+            }   
         }
 
-        internal object? GetAllOrders()
+        public List<Order> GetAllOrders()
         {
-            throw new NotImplementedException();
+            return new List<Order>();
         }
 
-        internal void UpdateOrder(Order order)
+        public void UpdateOrder(Order order)
         {
             throw new NotImplementedException();
+            // Tror inte denna funktion behövs då man får skapa en ny order om man vill ha något annat;
         }
     }
 }

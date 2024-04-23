@@ -8,11 +8,12 @@ namespace E_CommerceMVCApi.Models
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
+
         }
 
 
-        DbSet<User> Users { get; set; } 
-        DbSet<Product> Products { get; set; }
-        DbSet<Order> Orders { get; set; }
+        public DbSet<User> Users { get; set; } 
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

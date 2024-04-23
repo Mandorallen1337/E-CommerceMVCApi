@@ -18,6 +18,11 @@ namespace E_CommerceMVCApi.Controllers
             return View();
         }
 
+        public IActionResult UserPage()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

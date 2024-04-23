@@ -11,9 +11,9 @@ namespace E_CommerceMVCApi.Controllers
     {
         UserService userService;
 
-        public UserController()
+        public UserController(UserService userService)
         {
-            userService = new UserService();
+            this.userService = userService;
         }
 
         [HttpGet("GetAllUsers")]
@@ -35,6 +35,27 @@ namespace E_CommerceMVCApi.Controllers
                 return BadRequest();
             }
 
+        }
+
+        [HttpPut("UpdateUser")]
+        public IActionResult UpdateUser(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                userService.UpdateUser(user);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete("DeleteUser")]
+        public IActionResult DeleteUser(int id)
+        {
+            userService.DeleteUser(id);
+            return Ok();
         }
 
 

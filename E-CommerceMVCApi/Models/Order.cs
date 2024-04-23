@@ -8,21 +8,16 @@ namespace E_CommerceMVCApi.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string Username { get; set; }
-        [Required]
-        public int Quantity { get; set; }
+                
         [Required]
         public double TotalPrice { get; set; }
+        
 
-        public enum Status { Pending, Delivered }
+        public List<Product> ProductList { get; set; }
 
-        public Order(int orderId, string username, int quantity, double totalPrice)
+        public Order(int orderId, double totalPrice)
         {
-            OrderId = orderId;            
-            Username = username;
-            Quantity = quantity;
+            OrderId = orderId;        
             TotalPrice = totalPrice;            
         }
 

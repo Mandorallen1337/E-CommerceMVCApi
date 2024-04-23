@@ -6,6 +6,11 @@ namespace E_CommerceMVCApi.Services
 {
     public class UserService
     {
+        DatabaseContext db;
+        public UserService(DatabaseContext databaseContext)
+        {
+            db = databaseContext;            
+        }
         public List<User> GetAllUsers()
         {
             return new List<User>();
@@ -13,9 +18,25 @@ namespace E_CommerceMVCApi.Services
 
         public void AddUser(User user)
         {
-            // Add user to database
+            db.Users.Add(user);
+            db.SaveChanges();
+        }
 
-            
+        public void UpdateUser(User user)
+        {
+            db.Users.Update(user);
+            db.SaveChanges();            
+        }
+
+        public void DeleteUser(int id)
+        {
+            if (id != 0)
+            {
+                User user = db.Users.Find(id);
+                db.Users.Remove(user);
+                db.SaveChanges();
+            }
+
         }
     }
 }

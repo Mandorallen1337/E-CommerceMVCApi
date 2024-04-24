@@ -1,5 +1,6 @@
 ﻿
-using E_CommerceMVCApi.Models;
+using E_CommerceMVCApi.Data;
+using E_CommerceMVCApi.Models.Entities;
 
 namespace E_CommerceMVCApi.Services
 {

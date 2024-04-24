@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace E_CommerceMVCApi.Models
+namespace E_CommerceMVCApi.Models.Entities
 {
     public class User
     {
@@ -21,9 +21,9 @@ namespace E_CommerceMVCApi.Models
         public List<Order> Orders { get; set; }
 
 
-        public User(int userId, string username, string password, string email)
+        public User(string username, string password, string email)
         {
-            UserId = userId;
+
             Username = username;
             Password = password;
             Email = email;

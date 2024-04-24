@@ -1,4 +1,4 @@
-using E_CommerceMVCApi.Models;
+using E_CommerceMVCApi.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_CommerceMVCApi
@@ -10,9 +10,9 @@ namespace E_CommerceMVCApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews();            
 
-            string connectionString = builder.Configuration.GetConnectionString("mySqlConnection");
+            string connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
             builder.Services.AddDbContext<DatabaseContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
             var app = builder.Build();

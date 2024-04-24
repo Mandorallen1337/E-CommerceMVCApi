@@ -1,9 +1,9 @@
-﻿using E_CommerceMVCApi.Models;
+﻿using E_CommerceMVCApi.Models.Entities;
 using E_CommerceMVCApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace E_CommerceMVCApi.Controllers
+namespace E_CommerceMVCApi.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,7 +25,7 @@ namespace E_CommerceMVCApi.Controllers
         [HttpPost("AddOrder")]
         public IActionResult AddOrder(Order order)
         {
-          if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 orderService.AddOrder(order);
                 return Ok();

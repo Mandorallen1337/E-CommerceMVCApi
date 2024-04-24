@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using E_CommerceMVCApi.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace E_CommerceMVCApi.Models
+namespace E_CommerceMVCApi.Data
 {
     public class DatabaseContext : DbContext
     {
@@ -12,7 +13,7 @@ namespace E_CommerceMVCApi.Models
         }
 
 
-        public DbSet<User> Users { get; set; } 
+        public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
     }

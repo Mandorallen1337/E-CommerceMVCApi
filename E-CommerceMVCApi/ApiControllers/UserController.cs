@@ -1,9 +1,9 @@
-﻿using E_CommerceMVCApi.Models;
+﻿using E_CommerceMVCApi.Models.Entities;
 using E_CommerceMVCApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace E_CommerceMVCApi.Controllers
+namespace E_CommerceMVCApi.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -23,7 +23,7 @@ namespace E_CommerceMVCApi.Controllers
         }
 
         [HttpPost("AddUser")]
-        public IActionResult AddUser([FromBody] User user) // Bind user data from the request body
+        public IActionResult AddUser(User user)
         {
             if (ModelState.IsValid)
             {
@@ -32,12 +32,13 @@ namespace E_CommerceMVCApi.Controllers
             }
             else
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
+
         }
 
         [HttpPut("UpdateUser")]
-        public IActionResult UpdateUser([FromBody] User user) // Bind user data from the request body
+        public IActionResult UpdateUser(User user)
         {
             if (ModelState.IsValid)
             {
@@ -46,7 +47,7 @@ namespace E_CommerceMVCApi.Controllers
             }
             else
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
         }
 
@@ -58,6 +59,7 @@ namespace E_CommerceMVCApi.Controllers
         }
 
 
-        
+
+
     }
 }

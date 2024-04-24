@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@model List<E_CommerceMVCApi.Models.Entities.Product>
+
+
+<h1>Products</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th></th>           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Quantity</td>
+                <td>
+                    <a class="btn btn-primary mt-2 " asp-controller="Products" asp-action="Edit" asp-route-id="@product.ProductId">Edit</a>
+                </td>           
+            </tr>
+        }
+        <a class="btn btn-primary mt-2" asp-controller="Products" asp-action="Add">Add</a>
+
+</table>

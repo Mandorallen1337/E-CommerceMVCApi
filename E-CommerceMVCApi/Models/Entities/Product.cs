@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace E_CommerceMVCApi.Models
+namespace E_CommerceMVCApi.Models.Entities
 {
     public class Product
     {
@@ -20,7 +20,7 @@ namespace E_CommerceMVCApi.Models
         [Required]
         [MaxLength(50)]
         public int Quantity { get; set; }
-        
+
 
         public Product(int productId, string name, string description, double price, int quantity)
         {
@@ -29,7 +29,7 @@ namespace E_CommerceMVCApi.Models
             Description = description;
             Price = price;
             Quantity = quantity;
-            
+
         }
 
         public Product()

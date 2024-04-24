@@ -1,5 +1,6 @@
 ﻿
-using E_CommerceMVCApi.Models;
+using E_CommerceMVCApi.Data;
+using E_CommerceMVCApi.Models.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace E_CommerceMVCApi.Services
@@ -18,8 +19,10 @@ namespace E_CommerceMVCApi.Services
 
         public void AddUser(User user)
         {
+            user.Password = HashPassword(user.Password);
             db.Users.Add(user);
-            db.SaveChanges();
+            db.SaveChanges();            
+            
         }
 
         public void UpdateUser(User user)
@@ -37,6 +40,11 @@ namespace E_CommerceMVCApi.Services
                 db.SaveChanges();
             }
 
+        }
+
+        private string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
         }
     }
 }

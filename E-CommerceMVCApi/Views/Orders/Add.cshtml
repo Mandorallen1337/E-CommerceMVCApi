@@ -8,17 +8,22 @@
 
 <h1>Add Order</h1>
 
-<form method="post">
-    <div class="mt-3">
-        <label class="form-label">OrderID</label>
-        <input type="text" class="form-control" asp-for="OrderId" readonly />
-    </div>
+<form method="post">    
 
     <div class="mt-3">
         <label class="form-label">Total Price</label>
-        <input type="text" class="form-control" asp-for="TotalPrice" readonly />
+        <input type="text" class="form-control" asp-for="TotalPrice"  />
+    </div>    
+
+    <div class="mt-3">
+        <label class="form-label">Order Date</label>
+        <input type="text" class="form-control" asp-for="OrderDate"  />
     </div>
 
+    <div class="mt-3">
+        <label class="form-label">Customer ID</label>
+        <input type="text" class="form-control" asp-for="User.UserId" />
+    </div>
     
 
     <div class="mt-3">

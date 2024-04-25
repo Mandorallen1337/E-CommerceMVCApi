@@ -4,6 +4,7 @@ using E_CommerceMVCApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_CommerceMVCApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240425145751_UpdateProdectTable")]
+    partial class UpdateProdectTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,13 +33,10 @@ namespace E_CommerceMVCApi.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<double>("TotalPrice")
                         .HasColumnType("double");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
@@ -73,6 +73,7 @@ namespace E_CommerceMVCApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
+                        .HasMaxLength(50)
                         .HasColumnType("double");
 
                     b.Property<string>("Size")
@@ -117,13 +118,9 @@ namespace E_CommerceMVCApi.Migrations
 
             modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.Order", b =>
                 {
-                    b.HasOne("E_CommerceMVCApi.Models.Entities.User", "User")
+                    b.HasOne("E_CommerceMVCApi.Models.Entities.User", null)
                         .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.Product", b =>

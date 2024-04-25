@@ -12,7 +12,9 @@
     <thead>
         <tr>
             <th>OrderId</th>
-            <th>TotalPrice</th>            
+            <th>TotalPrice</th>  
+            <th>OrderDate</th>
+            <th>User</th>
             <th></th>           
         </tr>
     </thead>
@@ -21,7 +23,9 @@
         {
             <tr>
                 <td>@order.OrderId</td>
-                <td>@order.TotalPrice</td>                
+                <td>@order.TotalPrice</td> 
+                <td>@order.OrderDate</td>
+                <td>@order.User</td>
                 <td>
                     <a class="btn btn-primary mt-2 " asp-controller="Orders" asp-action="Edit" asp-route-id="@order.OrderId">Edit</a>
                 </td>           

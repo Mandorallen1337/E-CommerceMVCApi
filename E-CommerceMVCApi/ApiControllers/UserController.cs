@@ -22,6 +22,7 @@ namespace E_CommerceMVCApi.ApiControllers
             return Ok(userService.GetAllUsers());
         }
 
+        //https://localhost:7208/Users/Add
         [HttpPost("AddUser")]
         public IActionResult AddUser(User user)
         {

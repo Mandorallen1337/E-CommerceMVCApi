@@ -1,4 +1,5 @@
 using E_CommerceMVCApi.Data;
+using E_CommerceMVCApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_CommerceMVCApi
@@ -14,6 +15,9 @@ namespace E_CommerceMVCApi
 
             string connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
             builder.Services.AddDbContext<DatabaseContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            builder.Services.AddTransient<UserService>();
+            builder.Services.AddTransient<ProductService>();
+            builder.Services.AddTransient<OrderService>();
 
             var app = builder.Build();
 
@@ -30,7 +34,7 @@ namespace E_CommerceMVCApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthorization();            
 
             app.MapControllerRoute(
                 name: "default",

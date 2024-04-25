@@ -11,24 +11,30 @@ namespace E_CommerceMVCApi.Models.Entities
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+
+        [MaxLength(50)]
+        public string Size { get; set; }
+
+        [MaxLength(50)]
+        public string Category { get; set; }
         [Required]
         [MaxLength(255)]
         public string Description { get; set; }
         [Required]
-        [MaxLength(50)]
+        [Range(0, double.MaxValue)]
         public double Price { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public int Quantity { get; set; }
+        
+        
 
 
-        public Product(int productId, string name, string description, double price, int quantity)
+        public Product(int productId, string name, string size, string category, string description, double price)
         {
             ProductId = productId;
             Name = name;
             Description = description;
             Price = price;
-            Quantity = quantity;
+            Size = size;
+            Category = category;          
 
         }
 

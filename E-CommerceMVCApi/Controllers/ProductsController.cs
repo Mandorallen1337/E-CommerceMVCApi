@@ -28,7 +28,9 @@ namespace E_CommerceMVCApi.Controllers
                 Name = viewModel.Name,
                 Price = viewModel.Price,
                 Description = viewModel.Description,
-                Quantity = viewModel.Quantity
+                Size = viewModel.Size,
+                Category = viewModel.Category,
+
             };
             await dbContext.Products.AddAsync(product);
             await dbContext.SaveChangesAsync();
@@ -36,6 +38,7 @@ namespace E_CommerceMVCApi.Controllers
             return RedirectToAction("List", "Products");
         }
 
+      
         [HttpGet]
         public async Task<IActionResult> List()
         {
@@ -62,7 +65,8 @@ namespace E_CommerceMVCApi.Controllers
                 product.Name = viewModel.Name;
                 product.Price = viewModel.Price;
                 product.Description = viewModel.Description;
-                product.Quantity = viewModel.Quantity;
+                product.Size = viewModel.Size;
+                product.Category = viewModel.Category;
 
                 await dbContext.SaveChangesAsync();
             }

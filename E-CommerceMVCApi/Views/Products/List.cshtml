@@ -16,7 +16,9 @@
             <th>ProductId</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Quantity</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Category</th>
             <th></th>           
         </tr>
     </thead>
@@ -27,7 +29,9 @@
                 <td>@product.ProductId</td>
                 <td>@product.Name</td>
                 <td>@product.Description</td>
-                <td>@product.Quantity</td>
+                <td>@product.Size</td>
+                <td>@product.Price</td>
+                <td>@product.Category</td>
                 <td>
                     <a class="btn btn-primary mt-2 " asp-controller="Products" asp-action="Edit" asp-route-id="@product.ProductId">Edit</a>
                 </td>           

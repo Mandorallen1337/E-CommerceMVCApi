@@ -10,6 +10,8 @@ namespace E_CommerceMVCApi.Models
         
         public double Price { get; set; }
         
-        public int Quantity { get; set; }
+        public string? Size { get; set; }
+
+        public string Category { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using E_CommerceMVCApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Eventing.Reader;
 
 namespace E_CommerceMVCApi.ApiControllers
 {
@@ -30,7 +31,7 @@ namespace E_CommerceMVCApi.ApiControllers
         
         [HttpPost("AddUser")]
         public IActionResult AddUser(User user)
-        {
+        {        
             if (ModelState.IsValid)
             {
                 userService.AddUser(user);
@@ -39,7 +40,7 @@ namespace E_CommerceMVCApi.ApiControllers
             else
             {
                 return BadRequest();
-            }
+            }                      
 
         }
 

@@ -18,11 +18,11 @@ namespace E_CommerceMVCApi.Services
         }
 
         public void AddUser(User user)
-        {
+        {         
             user.Password = HashPassword(user.Password);
             db.Users.Add(user);
             db.SaveChanges();            
-            
+                      
         }
 
         public void UpdateUser(User user)

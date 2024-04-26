@@ -42,8 +42,7 @@ namespace E_CommerceMVCApi.Services
 
         public object? GetProductById(int id)
         {
-            return db.Products.Find(id);
-            
+            return db.Products.Find(id);            
         }
     }
 }

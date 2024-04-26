@@ -1,6 +1,7 @@
 ﻿
 using E_CommerceMVCApi.Data;
 using E_CommerceMVCApi.Models.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace E_CommerceMVCApi.Services
 {
@@ -36,6 +37,12 @@ namespace E_CommerceMVCApi.Services
         {
             throw new NotImplementedException();
             // Tror inte denna funktion behövs då man får skapa en ny order om man vill ha något annat;
+        }
+
+        public object? GetOrderById(int id)
+        {
+            
+            return db.Orders.Find(id);
         }
     }
 }

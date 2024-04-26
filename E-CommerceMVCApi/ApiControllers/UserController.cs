@@ -22,6 +22,11 @@ namespace E_CommerceMVCApi.ApiControllers
             return Ok(userService.GetAllUsers());
         }
 
+        [HttpGet("GetUserById")]
+        public IActionResult GetUserById(int id)
+        {
+            return Ok(userService.GetUserById(id));
+        }
         
         [HttpPost("AddUser")]
         public IActionResult AddUser(User user)

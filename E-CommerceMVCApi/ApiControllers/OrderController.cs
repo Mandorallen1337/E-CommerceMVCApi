@@ -22,6 +22,12 @@ namespace E_CommerceMVCApi.ApiControllers
             return Ok(orderService.GetAllOrders());
         }
 
+        [HttpGet("GetOrderById")]
+        public IActionResult GetOrderById(int id)
+        {
+            return Ok(orderService.GetOrderById(id));
+        }
+
         [HttpPost("AddOrder")]
         public IActionResult AddOrder(Order order)
         {

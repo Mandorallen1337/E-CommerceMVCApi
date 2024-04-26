@@ -46,5 +46,10 @@ namespace E_CommerceMVCApi.Services
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
+
+        public object? GetUserById(int id)
+        {
+            return db.Users.Find(id);
+        }
     }
 }

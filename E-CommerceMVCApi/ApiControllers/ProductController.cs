@@ -22,6 +22,13 @@ namespace E_CommerceMVCApi.ApiControllers
             return Ok(productService.GetAllProducts());
         }
 
+        [HttpGet("GetProductById")]
+        public IActionResult GetProductById(int id)
+        {
+            return Ok(productService.GetProductById(id));
+        }
+            
+
         [HttpPost("AddProduct")]
         public IActionResult AddProduct(Product product)
         {
@@ -51,7 +58,7 @@ namespace E_CommerceMVCApi.ApiControllers
             }
         }
 
-        [HttpDelete("DeleteProduct")]
+        [HttpDelete("DeleteProduct/{id}")]
         public IActionResult DeleteProduct(int id)
         {
             productService.DeleteProduct(id);

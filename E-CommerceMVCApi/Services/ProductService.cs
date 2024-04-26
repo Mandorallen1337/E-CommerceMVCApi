@@ -39,5 +39,11 @@ namespace E_CommerceMVCApi.Services
             db.Products.Update(product);
             db.SaveChanges(); 
         }
+
+        public object? GetProductById(int id)
+        {
+            return db.Products.Find(id);
+            
+        }
     }
 }

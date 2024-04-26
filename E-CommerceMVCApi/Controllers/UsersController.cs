@@ -29,7 +29,6 @@ namespace E_CommerceMVCApi.Controllers
         {
             userService.AddUser(user);           
             await dbContext.SaveChangesAsync();
-
             return RedirectToAction("List", "Users");
         }
 

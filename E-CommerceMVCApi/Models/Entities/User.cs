@@ -10,6 +10,7 @@ namespace E_CommerceMVCApi.Models.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
+        
         [Required]
         [MaxLength(50)]
         public string Username { get; set; }

@@ -1,6 +1,7 @@
 ﻿using E_CommerceMVCApi.Data;
 using E_CommerceMVCApi.Models;
 using E_CommerceMVCApi.Models.Entities;
+using E_CommerceMVCApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +10,12 @@ namespace E_CommerceMVCApi.Controllers
     public class UsersController : Controller
     {
         private readonly DatabaseContext dbContext;
+        UserService userService;
 
-        public UsersController(DatabaseContext dbContext)
+        public UsersController(DatabaseContext dbContext, UserService userService)
         {
             this.dbContext = dbContext;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -22,15 +25,9 @@ namespace E_CommerceMVCApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddUserViewModel viewModel)
+        public async Task<IActionResult> Add(User user)
         {
-            var user = new User
-            {
-                Username = viewModel.Username,
-                Password = viewModel.Password,
-                Email = viewModel.Email
-            };
-            await dbContext.Users.AddAsync(user);
+            userService.AddUser(user);           
             await dbContext.SaveChangesAsync();
 
             return RedirectToAction("List", "Users");

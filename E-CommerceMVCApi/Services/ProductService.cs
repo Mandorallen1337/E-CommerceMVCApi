@@ -30,7 +30,8 @@ namespace E_CommerceMVCApi.Services
 
         public List<Product> GetAllProducts()
         {
-            return new List<Product>();
+            return db.Products.ToList();
+            
         }
 
         public void UpdateProduct(Product product)

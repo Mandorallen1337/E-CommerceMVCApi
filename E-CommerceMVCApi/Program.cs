@@ -11,7 +11,8 @@ namespace E_CommerceMVCApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();            
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllers();
 
             string connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
             builder.Services.AddDbContext<DatabaseContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -32,7 +33,9 @@ namespace E_CommerceMVCApi
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+
             app.UseRouting();
+            app.MapControllers();
 
             app.UseAuthorization();            
 

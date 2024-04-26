@@ -6,7 +6,7 @@
 
 @model List<E_CommerceMVCApi.Models.Entities.Order>
 
-<h1>Orders</h1>
+<h1>View Orders</h1>
 
 <table class="table">
     <thead>
@@ -14,8 +14,7 @@
             <th>OrderId</th>
             <th>TotalPrice</th>  
             <th>OrderDate</th>
-            <th>User</th>
-            <th></th>           
+            <th>User</th>                     
         </tr>
     </thead>
     <tbody>
@@ -25,12 +24,9 @@
                 <td>@order.OrderId</td>
                 <td>@order.TotalPrice</td> 
                 <td>@order.OrderDate</td>
-                <td>@order.User</td>
-                <td>
-                    <a class="btn btn-primary mt-2 " asp-controller="Orders" asp-action="Edit" asp-route-id="@order.OrderId">Edit</a>
-                </td>           
+                <td>@order.User</td>                          
             </tr>
         }
-        <a class="btn btn-primary mt-2" asp-controller="Orders" asp-action="Add">Add</a>
+        
     </tbody>
 </table>

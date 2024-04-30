@@ -51,5 +51,26 @@ namespace E_CommerceMVCApi.Services
         {
             return db.Users.Find(id);
         }
+
+        public object UserLogin(string email, string password)
+        {
+            User user = db.Users.FirstOrDefault(u => u.Email == email);
+            if (user != null)
+            {
+                if (BCrypt.Net.BCrypt.Verify(password, user.Password))
+                {
+                    return user;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
     }
 }

@@ -2,6 +2,8 @@
 using E_CommerceMVCApi.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
+
 
 namespace E_CommerceMVCApi.ApiControllers
 {
@@ -65,12 +67,11 @@ namespace E_CommerceMVCApi.ApiControllers
             return Ok();
         }
 
-        [HttpGet("GetImagesByImageId")]
-        public IActionResult GetImagesByImageId(int id)
+        [HttpGet("GetImageById")]
+        
+        public IActionResult GetImageById(int id)
         {
-            productService.GetImagesByImageId(id);
-            return Ok();
-            
+            return Ok(productService.GetImageById(id));
         }
     }
-}
+  }

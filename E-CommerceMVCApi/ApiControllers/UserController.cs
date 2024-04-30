@@ -1,6 +1,7 @@
 ﻿using E_CommerceMVCApi.Models.Entities;
 using E_CommerceMVCApi.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.Eventing.Reader;
 
@@ -63,6 +64,26 @@ namespace E_CommerceMVCApi.ApiControllers
         {
             userService.DeleteUser(id);
             return Ok();
+        }
+
+        [HttpGet("UserLogin")]
+        public IActionResult Login([FromBody] User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = userService.UserLogin(user.Email, user.Password);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
 

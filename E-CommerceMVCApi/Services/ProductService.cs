@@ -44,5 +44,11 @@ namespace E_CommerceMVCApi.Services
         {
             return db.Products.Find(id);            
         }
+
+        public object? GetImagesByImageId(int id)
+        {
+            var image = File.ReadAllBytes("wwwroot/images/" + id + ".webp");
+            return image;
+        }
     }
 }

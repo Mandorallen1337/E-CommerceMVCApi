@@ -64,5 +64,13 @@ namespace E_CommerceMVCApi.ApiControllers
             productService.DeleteProduct(id);
             return Ok();
         }
+
+        [HttpGet("GetImagesByImageId")]
+        public IActionResult GetImagesByImageId(int id)
+        {
+            productService.GetImagesByImageId(id);
+            return Ok();
+            
+        }
     }
 }

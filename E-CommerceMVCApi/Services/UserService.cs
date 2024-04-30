@@ -18,11 +18,17 @@ namespace E_CommerceMVCApi.Services
         }
 
         public void AddUser(User user)
-        {         
-            user.Password = HashPassword(user.Password);
-            db.Users.Add(user);
-            db.SaveChanges();            
-                      
+        {   
+            if(IsEmailExist(user.Email))
+            {
+                throw new ValidationException("Email already exist");
+            }
+            else
+            {
+                user.Password = HashPassword(user.Password);
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
         }
 
         public void UpdateUser(User user)
@@ -71,6 +77,11 @@ namespace E_CommerceMVCApi.Services
                 return null;
             }
             
+        }
+
+        private bool IsEmailExist(string email)
+        {
+            return db.Users.Any(u => u.Email == email);
         }
     }
 }

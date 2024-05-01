@@ -1,6 +1,7 @@
 ﻿
 using E_CommerceMVCApi.Data;
 using E_CommerceMVCApi.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_CommerceMVCApi.Services
 {
@@ -34,6 +35,11 @@ namespace E_CommerceMVCApi.Services
             
         }
 
+        public List<Product> GetProductsByCategory(string category)
+        {
+            return db.Products.FromSql($"SELECT * FROM Products WHERE Category = {category} LIMIT 6").ToList();
+        }
+
         public void UpdateProduct(Product product)
         {
             db.Products.Update(product);
@@ -50,5 +56,6 @@ namespace E_CommerceMVCApi.Services
             
             return db.Images.Find(id);
         }
+
     }
 }

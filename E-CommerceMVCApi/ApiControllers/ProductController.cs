@@ -29,6 +29,12 @@ namespace E_CommerceMVCApi.ApiControllers
         {
             return Ok(productService.GetProductById(id));
         }
+
+        [HttpGet("GetProductsByCategory")]
+        public IActionResult GetProductsByCategory(string category)
+        {
+            return Ok(productService.GetProductsByCategory(category));
+        }
             
 
         [HttpPost("AddProduct")]

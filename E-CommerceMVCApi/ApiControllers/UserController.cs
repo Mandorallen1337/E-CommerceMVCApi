@@ -74,6 +74,11 @@ namespace E_CommerceMVCApi.ApiControllers
                 return BadRequest(ModelState);
             }
 
+            if (!userService.IsEmailExist(user.Email))
+            {
+                return BadRequest("Email doesn't exist.");
+            }
+
             var result = userService.UserLogin(user.Email, user.Password);
 
             if (result != null)
@@ -82,9 +87,10 @@ namespace E_CommerceMVCApi.ApiControllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest("Incorrect password.");
             }
         }
+
 
 
 

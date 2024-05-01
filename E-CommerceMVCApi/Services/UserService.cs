@@ -61,25 +61,18 @@ namespace E_CommerceMVCApi.Services
         public object UserLogin(string email, string password)
         {
             User user = db.Users.FirstOrDefault(u => u.Email == email);
-            if (user != null)
+            if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password))
             {
-                if (BCrypt.Net.BCrypt.Verify(password, user.Password))
-                {
-                    return user;
-                }
-                else
-                {
-                    return null;
-                }
+                return user;
             }
             else
             {
                 return null;
             }
-            
         }
 
-        private bool IsEmailExist(string email)
+
+        public bool IsEmailExist(string email)
         {
             return db.Users.Any(u => u.Email == email);
         }

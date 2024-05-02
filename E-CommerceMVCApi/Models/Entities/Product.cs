@@ -35,7 +35,6 @@ namespace E_CommerceMVCApi.Models.Entities
             Price = price;
             Size = size;
             Category = category;          
-
         }
 
         public Product()

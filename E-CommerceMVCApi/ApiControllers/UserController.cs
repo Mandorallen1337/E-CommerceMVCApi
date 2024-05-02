@@ -67,33 +67,45 @@ namespace E_CommerceMVCApi.ApiControllers
         }
 
         [HttpGet("UserLogin")]
-        public IActionResult Login([FromBody] User user)
+        public IActionResult Login(string email, string password)
         {
-            if (!ModelState.IsValid)
+            bool success = userService.UserLogin(email, password);
+            if (success)
             {
-                return BadRequest(ModelState);
-            }
-
-            if (!userService.IsEmailExist(user.Email))
-            {
-                return BadRequest("Email doesn't exist.");
-            }
-
-            var result = userService.UserLogin(user.Email, user.Password);
-
-            if (result != null)
-            {
-                return Ok(result);
+                return Ok(true);
             }
             else
             {
-                return BadRequest("Incorrect password.");
+                return BadRequest(false);
             }
         }
 
 
-
-
-
+          //  if (!ModelState.IsValid)
+          //  {
+          //      return BadRequest(ModelState);
+          //  }
+          //
+          //  if (!userService.IsEmailExist(user.Email))
+          //  {
+          //      return BadRequest("Email doesn't exist.");
+          //  }
+          //
+          //  var result = userService.UserLogin(user.Email, user.Password);
+          //
+          //  if (result != null)
+          //  {
+          //      return Ok(result);
+          //  }
+          //  else
+          //  {
+          //      return BadRequest("Incorrect password.");
+          //  }
     }
+
+
 }
+
+
+    
+

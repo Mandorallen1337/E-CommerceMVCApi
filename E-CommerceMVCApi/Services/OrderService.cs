@@ -14,7 +14,7 @@ namespace E_CommerceMVCApi.Services
         }
         public void AddOrder(Order order)
         {
-           db.Orders.Add(order);
+            db.Orders.Add(order);
             db.SaveChanges();
         }
 

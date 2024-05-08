@@ -20,25 +20,25 @@ namespace E_CommerceMVCApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddOrderViewModel viewModel)
+        public async Task<IActionResult> Add(Order order)
         {
-            var order = new Order
-            {
-                TotalPrice = viewModel.TotalPrice
-            };
+            
             await dbContext.Orders.AddAsync(order);
             await dbContext.SaveChangesAsync();
 
             return RedirectToAction("List", "Orders");
+            
         }
 
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var users = await dbContext.Orders.ToListAsync();
+            var order = await dbContext.Orders.ToListAsync();
 
-            return View(users);
+            return View(order);
         }
+
+
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)

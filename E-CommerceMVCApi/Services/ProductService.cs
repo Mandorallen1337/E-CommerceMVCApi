@@ -51,11 +51,7 @@ namespace E_CommerceMVCApi.Services
             return db.Products.Find(id);            
         }
 
-        public object? GetImageById(int id)
-        {
-            
-            return db.Images.Find(id);
-        }
+        
 
     }
 }

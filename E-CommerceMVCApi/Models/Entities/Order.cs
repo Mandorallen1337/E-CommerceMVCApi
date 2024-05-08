@@ -10,23 +10,21 @@ namespace E_CommerceMVCApi.Models.Entities
         public int OrderId { get; set; }
 
         [Required]
-        public double TotalPrice { get; set; }
-        public User User { get; set; }
+        public double TotalPrice { get; set; }        
 
         [Required]
         public DateTime OrderDate { get; set; }
-
-        
-
-
+        [Required]
+        public int UserId { get; set; }
         public List<Product> ProductList { get; set; }
 
-        public Order(int orderId, double totalPrice, DateTime orderDate, User user)
+        public Order(int orderId, double totalPrice, DateTime orderDate, int userId)
         {
             OrderId = orderId;
             TotalPrice = totalPrice;
             OrderDate = orderDate;
-            User = user;
+            UserId = userId;
+            
         }
 
         public Order()

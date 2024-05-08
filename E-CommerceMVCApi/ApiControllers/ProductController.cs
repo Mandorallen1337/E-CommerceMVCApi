@@ -73,11 +73,6 @@ namespace E_CommerceMVCApi.ApiControllers
             return Ok();
         }
 
-        [HttpGet("GetImageById")]
         
-        public IActionResult GetImageById(int id)
-        {
-            return Ok(productService.GetImageById(id));
-        }
     }
   }

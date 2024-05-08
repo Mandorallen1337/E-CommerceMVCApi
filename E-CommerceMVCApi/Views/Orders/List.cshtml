@@ -24,9 +24,11 @@
                 <td>@order.OrderId</td>
                 <td>@order.TotalPrice</td> 
                 <td>@order.OrderDate</td>
-                <td>@(order.User != null ? order.User.UserId : "User not set")</td>
+                <td>@(order.UserId != null ? order.UserId : "User not set")</td>
             </tr>
         }
         
     </tbody>
 </table>
+<a class="btn btn-primary mt-2" asp-controller="Orders" asp-action="Add">Add</a>
+

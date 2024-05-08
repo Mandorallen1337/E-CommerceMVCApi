@@ -11,11 +11,12 @@ namespace E_CommerceMVCApi.Models.Entities
 
         [Required]
         public double TotalPrice { get; set; }
+        public User User { get; set; }
 
         [Required]
         public DateTime OrderDate { get; set; }
 
-        public User User { get; set; }
+        
 
 
         public List<Product> ProductList { get; set; }

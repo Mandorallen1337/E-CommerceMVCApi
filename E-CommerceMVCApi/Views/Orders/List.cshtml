@@ -24,7 +24,7 @@
                 <td>@order.OrderId</td>
                 <td>@order.TotalPrice</td> 
                 <td>@order.OrderDate</td>
-                <td>@order.User</td>                          
+                <td>@(order.User != null ? order.User.UserId : "User not set")</td>
             </tr>
         }
         

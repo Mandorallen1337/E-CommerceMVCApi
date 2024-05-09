@@ -40,7 +40,6 @@ namespace E_CommerceMVCApi.ApiControllers
             {
                 return BadRequest();
             }
-
         }
 
         [HttpPut("UpdateOrder")]

@@ -4,6 +4,7 @@ using E_CommerceMVCApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_CommerceMVCApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240509095154_testar")]
+    partial class testar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,6 +47,29 @@ namespace E_CommerceMVCApi.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.OrderProduct", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("OrderId"));
+
+                    b.Property<int>("OrderId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("OrderId1");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderProducts");
                 });
 
             modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.Product", b =>
@@ -110,21 +136,6 @@ namespace E_CommerceMVCApi.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.Property<int>("OrdersOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductsProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrdersOrderId", "ProductsProductId");
-
-                    b.HasIndex("ProductsProductId");
-
-                    b.ToTable("OrderProduct", (string)null);
-                });
-
             modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.Order", b =>
                 {
                     b.HasOne("E_CommerceMVCApi.Models.Entities.User", null)
@@ -134,19 +145,33 @@ namespace E_CommerceMVCApi.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
+            modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.OrderProduct", b =>
                 {
-                    b.HasOne("E_CommerceMVCApi.Models.Entities.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersOrderId")
+                    b.HasOne("E_CommerceMVCApi.Models.Entities.Order", "Order")
+                        .WithMany("OrderList")
+                        .HasForeignKey("OrderId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("E_CommerceMVCApi.Models.Entities.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsProductId")
+                    b.HasOne("E_CommerceMVCApi.Models.Entities.Product", "Product")
+                        .WithMany("OrderList")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.Order", b =>
+                {
+                    b.Navigation("OrderList");
+                });
+
+            modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.Product", b =>
+                {
+                    b.Navigation("OrderList");
                 });
 
             modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.User", b =>

@@ -14,7 +14,11 @@
             <th>OrderId</th>
             <th>TotalPrice</th>  
             <th>OrderDate</th>
-            <th>User</th>                     
+            <th>UserId</th>   
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Product Size</th>
+            <
         </tr>
     </thead>
     <tbody>
@@ -24,11 +28,18 @@
                 <td>@order.OrderId</td>
                 <td>@order.TotalPrice</td> 
                 <td>@order.OrderDate</td>
-                <td>@(order.UserId != null ? order.UserId : "User not set")</td>
+                <td>@(order.UserId != null ? order.UserId.ToString() : "User not set")</td>
+                <td>
+                    @foreach (var product in order.Products)
+                    {
+                        <p>@product.Name</p>
+                        <p>@product.Price</p>
+                        <p>@product.Size</p>
+                    }
+                </td>
             </tr>
         }
         
     </tbody>
 </table>
 <a class="btn btn-primary mt-2" asp-controller="Orders" asp-action="Add">Add</a>
-

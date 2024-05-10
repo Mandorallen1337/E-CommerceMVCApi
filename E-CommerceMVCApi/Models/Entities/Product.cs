@@ -23,6 +23,8 @@ namespace E_CommerceMVCApi.Models.Entities
         [Required]
         [Range(0, double.MaxValue)]
         public double Price { get; set; }
+
+        public List<Order> Orders { get; set; }
         
         
 
@@ -39,6 +41,7 @@ namespace E_CommerceMVCApi.Models.Entities
 
         public Product()
         {
+            Orders = new List<Order>();
         }
     }
 }

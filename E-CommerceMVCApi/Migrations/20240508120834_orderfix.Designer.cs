@@ -4,6 +4,7 @@ using E_CommerceMVCApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_CommerceMVCApi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240508120834_orderfix")]
+    partial class orderfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,6 +72,9 @@ namespace E_CommerceMVCApi.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Price")
                         .HasColumnType("double");
 
@@ -78,6 +84,8 @@ namespace E_CommerceMVCApi.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.HasKey("ProductId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Products");
                 });
@@ -110,21 +118,6 @@ namespace E_CommerceMVCApi.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.Property<int>("OrdersOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductsProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrdersOrderId", "ProductsProductId");
-
-                    b.HasIndex("ProductsProductId");
-
-                    b.ToTable("OrderProduct", (string)null);
-                });
-
             modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.Order", b =>
                 {
                     b.HasOne("E_CommerceMVCApi.Models.Entities.User", null)
@@ -134,19 +127,16 @@ namespace E_CommerceMVCApi.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
+            modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.Product", b =>
                 {
                     b.HasOne("E_CommerceMVCApi.Models.Entities.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("ProductList")
+                        .HasForeignKey("OrderId");
+                });
 
-                    b.HasOne("E_CommerceMVCApi.Models.Entities.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.Order", b =>
+                {
+                    b.Navigation("ProductList");
                 });
 
             modelBuilder.Entity("E_CommerceMVCApi.Models.Entities.User", b =>
